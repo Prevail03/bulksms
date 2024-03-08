@@ -1,0 +1,42 @@
+<?php
+
+// Define your API endpoint and parameters
+$apiEndpoint = 'https://api.sandbox.africastalking.com/version1/messaging';
+$apiKey = 'b48d3fcc54ff33303301bc602f64d3cde00f85c988e9bbd8fc5e2346ad7d68c0';
+$username = 'sandbox';
+$to = '+254701694441,+254796469879';
+$message = 'Hello World!';
+$from = 'OCTAGON';
+
+// Create an array of POST data
+$postData = [
+    'username' => $username,
+    'to' => $to,
+    'message' => $message,
+    'from' => $from,
+];
+
+// Initialize cURL session
+$ch = curl_init($apiEndpoint);
+
+// Set cURL options
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+curl_setopt($ch, CURLOPT_POST, true);
+curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($postData));
+curl_setopt($ch, CURLOPT_HTTPHEADER, [
+    'Accept: application/json',
+    'Content-Type: application/x-www-form-urlencoded',
+    'apiKey: '.$apiKey,
+]);
+
+// Execute cURL request
+$response = curl_exec($ch);
+
+// Check for cURL errors
+if (curl_errno($ch)) {
+    echo 'cURL error: '.curl_error($ch);
+}
+// Close cURL session
+curl_close($ch);
+// Display the response from the API
+echo json_encode($response);

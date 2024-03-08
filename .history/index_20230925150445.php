@@ -4,30 +4,24 @@ require __DIR__.'/vendor/autoload.php';
 use AfricasTalking\SDK\AfricasTalking;
 
 $username = 'sandbox'; // use 'sandbox' for development in the test environment
-$apiKey = 'b3aa70ace9f3c5e9458fac4ce13affa4854b810be6f500a866784d01fc74a7d4'; // use your sandbox app API key for development in the test environment
+$apiKey = 'b48d3fcc54ff33303301bc602f64d3cde00f85c988e9bbd8fc5e2346ad7d68c0'; // use your sandbox app API key for development in the test environment
 $AT = new AfricasTalking($username, $apiKey);
-
-// List of recipients
 $recipients = [
-    '+254701694441',
-    '+254796469879',
-    '+254798391255',
+  '+254701694441',
+  '+256701062172',
+  '+260976184845',
 ];
-
-// Get the SMS service
+// Get one of the services
 $sms = $AT->sms();
-
-// Send the same message to all recipients
+// Use the service
 $result = $sms->send([
     'to' => $recipients,
-    'message' => "Heloo World! \n Octagon Africa ",
+    'message' => 'Hello World! OCTAGONAFRICA',
 ]);
-
-// Check the result for success or failure
 if ($result['status'] === 'success') {
     echo "Message sent to all recipients: \n";
     echo json_encode($result);
 } else {
-    echo "Failed to send message to all recipients\n";
+    echo "Message sent to all recipients:\n";
     echo json_encode($result);
 }

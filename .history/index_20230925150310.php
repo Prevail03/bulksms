@@ -9,7 +9,7 @@ $AT = new AfricasTalking($username, $apiKey);
 $recipients = [
   '+254701694441',
   '+256701062172',
-  '+260976184845',
+  '+254798391255',
 ];
 // Get one of the services
 $sms = $AT->sms();
@@ -19,7 +19,7 @@ $result = $sms->send([
     'message' => 'Hello World! OCTAGONAFRICA',
 ]);
 if ($result['status'] === 'success') {
-    echo "Message sent to all recipients: \n";
+    echo "Message sent to all recipients: {$result['message']}\n";
     echo json_encode($result);
 } else {
     echo "Message sent to all recipients:\n";
